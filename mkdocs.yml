@@ -1,6 +1,7 @@
 site_name: "Beneath The Canal PowerShell Module Docs"
 site_description: 'A docs test'
 site_author: 'Gilbert Sanchez'
+site_url: 'https://heyitsgilbert.github.io/BeneathTheCanals/'
 docs_dir: docs/en-US/
 repo_name: 'HeyItsGilbert/BeneathTheCanals'
 repo_url: 'https://github.com/HeyItsGilbert/BeneathTheCanals/'
