@@ -5,4 +5,4 @@ docs_dir: docs/
 repo_name: 'HeyItsGilbert/BeneathTheCanals'
 repo_url: 'https://github.com/HeyItsGilbert/BeneathTheCanals/'
 theme:
-  name: 'material'
+  name: 'readthedocs'
