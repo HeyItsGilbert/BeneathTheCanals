@@ -4,5 +4,6 @@ site_author: 'Gilbert Sanchez'
 docs_dir: docs/en-US/
 repo_name: 'HeyItsGilbert/BeneathTheCanals'
 repo_url: 'https://github.com/HeyItsGilbert/BeneathTheCanals/'
-theme:
-  name: 'readthedocs'
+theme: 'readthedocs'
+nav:
+  - Home: 'about_BeneathTheCanals.help.md'
