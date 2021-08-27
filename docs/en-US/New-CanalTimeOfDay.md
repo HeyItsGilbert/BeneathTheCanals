@@ -8,7 +8,7 @@ schema: 2.0.0
 # New-CanalTimeOfDay
 
 ## SYNOPSIS
-{{ Fill in the Synopsis }}
+Create a Canal Time of Day. This affects your encounters.
 
 ## SYNTAX
 
@@ -17,21 +17,28 @@ New-CanalTimeOfDay [[-Period] <Period>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-{{ Fill in the Description }}
+Create a Canal Time of Day. This affects your encounters.
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
-PS C:\> {{ Add example code here }}
+> New-CanalTimeOfDay
 ```
 
-{{ Add example description here }}
+Get a random time of day.
+
+### Example 2
+```powershell
+> New-CanalTimeOfDay -Period Tabledark
+```
+
+Get a specific time of day.
 
 ## PARAMETERS
 
 ### -Period
-{{ Fill Period Description }}
+If you already have a time period in mind, you can pass an explicit time period.
 
 ```yaml
 Type: Period

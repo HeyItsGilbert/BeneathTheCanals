@@ -2,9 +2,7 @@ site_name: "Beneath The Canal PowerShell Module Docs"
 site_description: 'A docs test'
 site_author: 'Gilbert Sanchez'
 site_url: 'https://heyitsgilbert.github.io/BeneathTheCanals/'
-docs_dir: docs/en-US/
+docs_dir: docs/
 repo_name: 'HeyItsGilbert/BeneathTheCanals'
 repo_url: 'https://github.com/HeyItsGilbert/BeneathTheCanals/'
 theme: 'readthedocs'
-nav:
-  - Home: 'about_BeneathTheCanals.help.md'

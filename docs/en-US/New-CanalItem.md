@@ -8,7 +8,7 @@ schema: 2.0.0
 # New-CanalItem
 
 ## SYNOPSIS
-{{ Fill in the Synopsis }}
+Generate a pentolan item for your players to find.
 
 ## SYNTAX
 
@@ -17,16 +17,16 @@ New-CanalItem [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-{{ Fill in the Description }}
+Quickly get a list of features for an item.
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
-PS C:\> {{ Add example code here }}
+C:\> New-CanalItem
 ```
 
-{{ Add example description here }}
+Returns a list of features for you to create an item.
 
 ## PARAMETERS
 

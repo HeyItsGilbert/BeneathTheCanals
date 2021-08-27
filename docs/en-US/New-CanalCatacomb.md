@@ -8,7 +8,7 @@ schema: 2.0.0
 # New-CanalCatacomb
 
 ## SYNOPSIS
-{{ Fill in the Synopsis }}
+Create a new catacomb for your players to explore.
 
 ## SYNTAX
 
@@ -17,16 +17,16 @@ New-CanalCatacomb [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-{{ Fill in the Description }}
+Create a new catacomb for your players to explore.
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
-PS C:\> {{ Add example code here }}
+> New-CanalCatacomb
 ```
 
-{{ Add example description here }}
+Generates a random catacomb.
 
 ## PARAMETERS
 

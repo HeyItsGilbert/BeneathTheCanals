@@ -7,3 +7,4 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [0.1.0] Unreleased
 
+Working through all the kinks.
