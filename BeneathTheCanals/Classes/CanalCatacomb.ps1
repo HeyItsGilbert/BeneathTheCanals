@@ -1,16 +1,16 @@
 enum CatacombCategory {
-  Undercity
-  Ancient
-  Opulent
-  Volcanic
+  Undercity = 1
+  Ancient = 2
+  Opulent = 3
+  Volcanic = 4
 }
 enum CatacombRoom {
-  Stairs
-  Passage
-  Grotto
-  Chamber
-  Vault
-  Tomb
+  Stairs = 1
+  Passage = 2
+  Grotto = 3
+  Chamber = 4
+  Vault = 5
+  Tomb = 6
 }
 class CanalCatacomb {
   [CatacombCategory]$Category
@@ -21,44 +21,36 @@ class CanalCatacomb {
 
   # Constructor
   CanalCatacomb() {
-    $this = $this.GetCategory($null)
-    $this = $this.GetRoom($null)
-    $this.Feature = $this.GetFeature()
-  }
-
-  CanalCatacomb([CatacombRoom]$Room) {
-    $this = $this.GetCategory($null)
-    $this = $this.GetRoom($Room)
-    $this.Feature = $this.GetFeature()
-  }
-
-  CanalCatacomb([CatacombCategory]$Category) {
-    $this = $this.GetCategory($Category)
-    $this = $this.GetRoom($null)
-    $this.Feature = $this.GetFeature()
+    $this.GetCategory()
+    $this.GetRoom()
+    $this.GetFeature()
   }
 
   # Methods
-  [CanalCatacomb] GetCategory($c) {
-    $cats = @{
+  [hashtable] ListCategories() {
+    return @{
       'Undercity' = '4';
       'Ancient'   = '6';
       'Opulent'   = '8';
       'Volcanic'  = '12';
     }
-    if ($c) {
-      $cat = $cats.GetEnumerator() | Where-Object { $_.Name -eq $c }
-    } else {
-      $cat = $cats.GetEnumerator() | Get-Random
-    }
-
-    $this.Category = $cat.Key
-    $this.EncounterDie = $cat.Value
-    return $this
   }
 
-  [CanalCatacomb] GetRoom($g) {
-    $rooms = @{
+  [void] GetCategory() {
+    $cats = $this.ListCategories()
+    $cat = $cats.GetEnumerator() | Get-Random
+    $this.Category = $cat.Key
+    $this.EncounterDie = $cat.Value
+  }
+
+  [void] SetCategory([CatacombCategory]$c) {
+    $cats = $this.ListCategories()
+    $this.Category = $c
+    $this.EncounterDie = $cats[$c.ToString()]
+  }
+
+  [hashtable] ListRooms() {
+    return @{
       'Stairs'  = '-2';
       'Passage' = '-1';
       'Grotto'  = '+0';
@@ -66,19 +58,23 @@ class CanalCatacomb {
       'Vault'   = '+2';
       'Tomb'    = '+3';
     }
-    if ($g) {
-      $r = $rooms.GetEnumerator() | Where-Object { $_.Name -eq $g }
-
-    } else {
-      $r = $rooms.GetEnumerator() | Get-Random
-    }
-    $this.Room = $r.Key
-    $this.FeatureShift = $r.Value
-    return $this
   }
 
-  [String] GetFeature() {
-    return $this.Feature = @(
+  [void] GetRoom() {
+    $rooms = $this.ListRooms()
+    $r = $rooms.GetEnumerator() | Get-Random
+    $this.Room = $r.Key
+    $this.FeatureShift = $r.Value
+  }
+
+  [void] SetRoom([CatacombRoom]$cr) {
+    $rooms = $this.ListRooms()
+    $this.Room = $cr
+    $this.FeatureShift = $rooms[$cr.ToString()]
+  }
+
+  [Void] GetFeature() {
+    $this.Feature = @(
       'Water on the surfaces',
       'Thick mold & fungus',
       'Crumbling surfaces',
