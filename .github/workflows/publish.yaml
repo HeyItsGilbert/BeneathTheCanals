@@ -4,10 +4,10 @@ on:
   push:
     branches-ignore:
       - gh-pages
-  pull_request:
-    branches: 
-      - main
       - develop
+  pull_request:
+    branches:
+      - main
 
   workflow_dispatch:
 
@@ -30,6 +30,6 @@ jobs:
 
       - name: Publish to PSGallery
         shell: pwsh
-        env: 
+        env:
           PSGALLERY_API_KEY: ${{ secrets.PS_GALLERY_KEY }}
         run: ./build.ps1 -Task Publish -Bootstrap
