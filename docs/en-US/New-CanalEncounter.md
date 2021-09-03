@@ -8,52 +8,67 @@ schema: 2.0.0
 # New-CanalEncounter
 
 ## SYNOPSIS
-{{ Fill in the Synopsis }}
+
+Creates an encounter for you to face in the catacombs.
 
 ## SYNTAX
 
-```
-New-CanalEncounter [-Catacomb] <CanalCatacomb> [-TimeOfDay] <CanalTimeOfDay> [<CommonParameters>]
+```powershell
+New-CanalEncounter [[-CatacombCategory] <CatacombCategory>] [[-Period] <Period>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-{{ Fill in the Description }}
+
+This will let you generate an encounter for your adventure.
 
 ## EXAMPLES
 
 ### Example 1
+
 ```powershell
-PS C:\> {{ Add example code here }}
+PS C:\> New-CanalEncounter
 ```
 
-{{ Add example description here }}
+Create a completely random encounter.
+
+### Example 2
+
+```powershell
+PS C:\> New-CanalEncounter -Period Tabledark
+```
+
+Create an encounter you would face during the Tabledark time period.
 
 ## PARAMETERS
 
-### -Catacomb
-{{ Fill Catacomb Description }}
+### -CatacombCategory
+
+The category of catacomb you are in.
 
 ```yaml
-Type: CanalCatacomb
+Type: CatacombCategory
 Parameter Sets: (All)
 Aliases:
+Accepted values: Undercity, Ancient, Opulent, Volcanic
 
-Required: True
+Required: False
 Position: 0
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -TimeOfDay
-{{ Fill TimeOfDay Description }}
+### -Period
+
+The time period you are in the catacomb
 
 ```yaml
-Type: CanalTimeOfDay
+Type: Period
 Parameter Sets: (All)
 Aliases:
+Accepted values: Backerslight, Tabledark, Hopelight, QuietDark, Lastlight, Slumberdark
 
-Required: True
+Required: False
 Position: 1
 Default value: None
 Accept pipeline input: False
@@ -61,6 +76,7 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
+
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
@@ -70,6 +86,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## OUTPUTS
 
 ### System.Object
+
 ## NOTES
 
 ## RELATED LINKS

@@ -40,9 +40,11 @@ Describe "New-CanalTimeOfDay" {
 
 Describe "Test New-CanalEncounter" {
   It "Creates a new random encounter" {
-    $cc = New-CanalCatacomb
-    $tod = New-CanalTimeOfDay
-    New-CanalEncounter -Catacomb $cc -TimeOfDay $tod | Should -BeOfType System.Management.Automation.PSCustomObject
+    New-CanalEncounter | Should -BeOfType System.Management.Automation.PSCustomObject
+  }
+
+  It "Creates a specifc encounter" {
+    New-CanalEncounter -CatacombCategory Undercity -Period Backerslight | Should -BeOfType System.Management.Automation.PSCustomObject
   }
 
 }

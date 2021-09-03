@@ -1,12 +1,10 @@
 function New-CanalEncounter {
   [CmdletBinding()]
   param (
-    [Parameter(Mandatory = $True)]
-    [CanalCatacomb]
-    $Catacomb,
-    [Parameter(Mandatory = $True)]
-    [CanalTimeOfDay]
-    $TimeOfDay
+    [CatacombCategory]
+    $CatacombCategory,
+    [Period]
+    $Period
   )
 
   $encounters = @{
@@ -182,8 +180,20 @@ function New-CanalEncounter {
     }
   }
 
+  # Get encounter die from catacomb type
+  if ($null -eq $CatacombCategory) {
+    $CatacombCategory = [Enum]::GetValues([CatacombCategory]) | Get-Random
+  }
+  $Catacomb = New-CanalCatacomb -Category $CatacombCategory
+
   # Roll for which encounter you get
-  $roll = Get-Random -Minimum 1 -Maximum 12
+  [int]$roll = Get-Random -Minimum 1 -Maximum $Catacomb.EncounterDie
+
+  # Get time of Day
+  if ($null -eq $Period) {
+    $Period = [Enum]::GetValues([Period]) | Get-Random
+  }
+  $TimeOfDay = New-CanalTimeOfDay -Period $Period
 
   $e = $encounters[$roll + $TimeOfDay.EncounterShift]
 
