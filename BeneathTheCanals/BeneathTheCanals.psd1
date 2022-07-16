@@ -12,7 +12,7 @@
     RootModule = 'BeneathTheCanals.psm1'
 
     # Version number of this module.
-    ModuleVersion = '0.1.2'
+    ModuleVersion = '0.1.3'
 
     # Supported PSEditions
     # CompatiblePSEditions = @()
@@ -104,7 +104,7 @@
             ProjectUri = 'https://github.com/HeyItsGilbert/BeneathTheCanals'
 
             # A URL to an icon representing this module.
-            IconUri = 'https://github.com/HeyItsGilbert/BeneathTheCanals/blob/main/static/icon-85x85.png'
+            IconUri = 'https://raw.githubusercontent.com/HeyItsGilbert/BeneathTheCanals/main/static/icon-85x85.png'
 
             # ReleaseNotes of this module
             ReleaseNotes = 'https://github.com/HeyItsGilbert/BeneathTheCanals/blob/main/CHANGELOG.md'
