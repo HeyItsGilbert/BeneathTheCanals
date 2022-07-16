@@ -21,7 +21,7 @@ jobs:
         run: |
           [version]$GalleryVersion = Get-NextNugetPackageVersion -Name BeneathTheCanals -ErrorAction Stop
           [version]$GithubVersion = Get-MetaData -Path ./BeneathTheCanals/BeneathTheCanals.psd1 -PropertyName ModuleVersion -ErrorAction Stop
-          $bumped = $GalleryVersion -ge $GithubVersion
+          $bumped = $GithubVersion -ge $GalleryVersion
 
           # Set the output named "version_bumped"
           Write-Host "::set-output name=version_bumped::$bumped"
