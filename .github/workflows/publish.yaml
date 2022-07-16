@@ -8,22 +8,27 @@ jobs:
   build:
     runs-on: windows-latest
     steps:
-      - uses: actions/checkout@v2
+      # Get the current version
+      - uses: actions/checkout@v3
+      - name: Install BuildHelpers module
+        shell: pwsh
+        run: |
+          Set-PSRepository PSGallery -InstallationPolicy Trusted
+          Install-Module BuildHelpers -ErrorAction Stop
       - shell: pwsh
         # Give an id to the step, so we can reference it later
-        id: check_file_changed
+        id: check_if_versions_bumped
         run: |
-          # Diff HEAD with the previous commit
-          $diff = git diff --name-only HEAD^ HEAD
+          [version]$GalleryVersion = Get-NextNugetPackageVersion -Name $env:BHProjectName -ErrorAction Stop
+          [version]$GithubVersion = Get-MetaData -Path $env:BHPSModuleManifest -PropertyName ModuleVersion -ErrorAction Stop
+          $bumped = $GalleryVersion -ge $GithubVersion
 
-          # Check if a file under docs/ or with the .md extension has changed (added, modified, deleted)
-          $SourceDiff = $diff | Where-Object { $_ -match '^BeneathTheCanals/' }
-          $HasDiff = $SourceDiff.Length -gt 0
+          # Set the output named "version_bumped"
+          Write-Host "::set-output name=version_bumped::$bumped"
 
-          # Set the output named "docs_changed"
-          Write-Host "::set-output name=docs_changed::$HasDiff"
       - name: Publish to PSGallery
         shell: pwsh
+        if: steps.check_if_versions_bumped.outputs.version_bumped == 'True'
         env:
           PSGALLERY_API_KEY: ${{ secrets.PS_GALLERY_KEY }}
         run: ./build.ps1 -Task Publish -Bootstrap
