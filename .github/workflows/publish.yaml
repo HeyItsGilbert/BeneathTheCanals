@@ -8,9 +8,27 @@ jobs:
   build:
     runs-on: windows-latest
     steps:
-      - uses: actions/checkout@v2
+      # Get the current version
+      - uses: actions/checkout@v3
+      - name: Install BuildHelpers module
+        shell: pwsh
+        run: |
+          Set-PSRepository PSGallery -InstallationPolicy Trusted
+          Install-Module BuildHelpers -ErrorAction Stop
+      - shell: pwsh
+        # Give an id to the step, so we can reference it later
+        id: check_if_versions_bumped
+        run: |
+          [version]$GalleryVersion = Get-NextNugetPackageVersion -Name $env:BHProjectName -ErrorAction Stop
+          [version]$GithubVersion = Get-MetaData -Path $env:BHPSModuleManifest -PropertyName ModuleVersion -ErrorAction Stop
+          $bumped = $GalleryVersion -ge $GithubVersion
+
+          # Set the output named "version_bumped"
+          Write-Host "::set-output name=version_bumped::$bumped"
+
       - name: Publish to PSGallery
         shell: pwsh
+        if: steps.check_if_versions_bumped.outputs.version_bumped == 'True'
         env:
           PSGALLERY_API_KEY: ${{ secrets.PS_GALLERY_KEY }}
         run: ./build.ps1 -Task Publish -Bootstrap
