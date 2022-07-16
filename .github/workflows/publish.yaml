@@ -10,17 +10,17 @@ jobs:
     steps:
       # Get the current version
       - uses: actions/checkout@v3
-      - name: Install BuildHelpers module
-        shell: pwsh
-        run: |
-          Set-PSRepository PSGallery -InstallationPolicy Trusted
-          Install-Module BuildHelpers -ErrorAction Stop
+      - name: Install and cache PowerShell modules
+        id: psmodulecache
+        uses: potatoqualitee/psmodulecache@v4.5
+        with:
+          modules-to-cache: BuildHelpers
       - shell: pwsh
         # Give an id to the step, so we can reference it later
         id: check_if_versions_bumped
         run: |
-          [version]$GalleryVersion = Get-NextNugetPackageVersion -Name $env:BHProjectName -ErrorAction Stop
-          [version]$GithubVersion = Get-MetaData -Path $env:BHPSModuleManifest -PropertyName ModuleVersion -ErrorAction Stop
+          [version]$GalleryVersion = Get-NextNugetPackageVersion -Name BeneathTheCanals -ErrorAction Stop
+          [version]$GithubVersion = Get-MetaData -Path ./BeneathTheCanals/BeneathTheCanals.psd1 -PropertyName ModuleVersion -ErrorAction Stop
           $bumped = $GalleryVersion -ge $GithubVersion
 
           # Set the output named "version_bumped"
