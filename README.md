@@ -1,4 +1,5 @@
 # BeneathTheCanals
+![PowerShell Gallery](https://img.shields.io/powershellgallery/dt/BeneathTheCanals) ![PowerShell Gallery Version](https://img.shields.io/powershellgallery/v/BeneathTheCanals) ![GitHub Workflow Status](https://img.shields.io/github/workflow/status/HeyItsGilbert/BeneathTheCanals/CI) ![PowerShell Gallery](https://img.shields.io/powershellgallery/p/BeneathTheCanals)
 
 Generate all the horrors needed for your game! Catacombs, encounters, and items.
 
